@@ -17,11 +17,7 @@ class Clients extends Component
 
     public function render()
     {
-        $role = ['client'];
-
-        $clients = User::whereHas('roles', function($q) use($role) {
-            $q->whereIn('name', $role);})
-            ->where('archived', 0)
+        $clients = User::where('archived', 0)
             ->latest()
             ->paginate(10);
 

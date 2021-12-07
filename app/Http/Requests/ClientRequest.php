@@ -26,17 +26,8 @@ class ClientRequest extends FormRequest
         return [
             //
             'name'=>'required|max:150',
-            'username'=>'required|max:150',
             'email'=>'required|max:150',
-            'source_id'=>'required',
-            'loyal_id'=>'required',
-        ];
-    }
 
-    public function messages(){
-        return[
-            'source_id.required'=>'Please select a loyalty',
-            'loyal_id.required'=>'Please select a source',
         ];
     }
 }

@@ -44,23 +44,8 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('lastname','Username:',['class'=>'form-label']) !!}
-                        {!! Form::label('lastname',$client->username ,['class'=>'form-control']) !!}
-                    </div>
-
-                    <div class="form-group mb-4">
                         {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
                         {!! Form::label('email',$client->email,['class'=>'form-control']) !!}
-                    </div>
-
-                    <div class="form-group mb-4">
-                        {!! Form::label('loyal','Select Loyalty:', ['class'=>'form-label']) !!}
-                        {!! Form::label('loyal_id',$client->loyal->name,['class'=>'form-control'])!!}
-                    </div>
-
-                    <div class="form-group mb-4">
-                        {!! Form::label('source','Select Source:', ['class'=>'form-label']) !!}
-                        {!! Form::label('source_id',$client->source->name,['class'=>'form-control'])!!}
                     </div>
 
                     <div class="form-group mb-4">

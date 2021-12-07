@@ -32,13 +32,7 @@ class AdminClientController extends Controller
     public function create()
     {
         //
-        $loyals = Loyal::where('archived', 0)
-            ->pluck('name', 'id');
-
-        $sources = Source::where('archived', 0)
-            ->pluck('name', 'id');
-
-        return view('admin.clients.create',compact('loyals', 'sources'));
+        return view('admin.clients.create');
     }
 
     /**
@@ -52,20 +46,13 @@ class AdminClientController extends Controller
         //
         $client = new User();
         $client->name = $request->name;
-        $client->username = $request->username;
         $client->email = $request->email;
         $client->remarks = $request->remarks;
-        $client->loyal_id = $request->loyal_id;
-        $client->source_id = $request->source_id;
+
         $client->password = "";
 
         $client->save();
 
-        DB::table('user_role')->insert([                                                                          //Set Client ID in user_role migration
-            'user_id' => $client->id,
-            'role_id' => '3',
-            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
 
         \Brian2694\Toastr\Facades\Toastr::success('Client Successfully Saved');
 
@@ -81,13 +68,8 @@ class AdminClientController extends Controller
     public function show($id)
     {
         //
-        $loyals = Loyal::pluck('name', 'id')
-            ->all();
-        $sources = Source::pluck('name', 'id')
-            ->all();
-
-        $client = User::findOrFail($id);
-        return view('admin.clients.show', compact('client', 'loyals', 'sources'));
+                $client = User::findOrFail($id);
+        return view('admin.clients.show', compact('client'));
     }
 
     /**
@@ -101,13 +83,7 @@ class AdminClientController extends Controller
         //
         $client = User::findOrFail($id);
 
-        $loyals = Loyal::where('archived', 0)
-            ->pluck('name', 'id');
-
-        $sources = Source::where('archived', 0)
-            ->pluck('name', 'id');
-
-        return view('admin.clients.edit',compact('loyals', 'sources', 'client'));
+        return view('admin.clients.edit',compact('client'));
     }
 
     /**
@@ -122,11 +98,8 @@ class AdminClientController extends Controller
         //
         $client = User::findOrFail($id);
         $client->name = $request->name;
-        $client->username = $request->username;
         $client->email = $request->email;
         $client->remarks = $request->remarks;
-        $client->loyal_id = $request->loyal_id;
-        $client->source_id = $request->source_id;
 
         $client->update();
 
@@ -148,11 +121,7 @@ class AdminClientController extends Controller
 
     public function archive()
     {
-        $name = ['client'];
-
-        $clients = User::whereHas('roles', function($q) use($name) {
-            $q->whereIn('name', $name);})
-            ->where('archived', 1)
+        $clients = User::where('archived', 1)
             ->latest()
             ->paginate(10);
 

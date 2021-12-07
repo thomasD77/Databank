@@ -5,7 +5,6 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Username</th>
             <th scope="col">Email</th>
             <th scope="col">Registered</th>
             <th scope="col">Actions</th>
@@ -17,7 +16,6 @@
                 <tr>
                     <td>{{$client->id ? $client->id : 'No ID'}}</td>
                     <td>{{$client->name ? $client->name : 'No Name'}}</td>
-                    <td>{{$client->username ? $client->username : 'No Username'}}</td>
                     <td>{{$client->email ? $client->email : 'No email'}}</td>
                     <td>{{$client->created_at ? $client->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td class="text-center">

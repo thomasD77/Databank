@@ -50,40 +50,9 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('username','Username:',['class'=>'form-label']) !!}
-                        {!! Form::text('username',null ,['class'=>'form-control']) !!}
-                        @error('username')
-                        <p class="text-danger mt-2"> {{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-4">
                         {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
                         {!! Form::text('email',null,['class'=>'form-control']) !!}
                         @error('email')
-                        <p class="text-danger mt-2"> {{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-4">
-                        <div class="d-flex justify-content-between align-items-center">
-                            {!! Form::label('loyal','Select Loyalty:', ['class'=>'form-label']) !!}
-                            <a data-bs-toggle="tooltip" title="New Loyalty" class="btn btn-alt-primary mb-1" href="{{route('loyals.index')}}"><i class="fa fa-plus"></i></a>
-                        </div>
-
-                        {!! Form::select('loyal_id',$loyals,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
-                        @error('loyal_id')
-                        <p class="text-danger mt-2"> {{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-4">
-                        <div class="d-flex justify-content-between align-items-center">
-                            {!! Form::label('source','Select Source:', ['class'=>'form-label']) !!}
-                            <a data-bs-toggle="tooltip" title="New Source" class="btn btn-alt-primary mb-1" href="{{route('sources.index')}}"><i class="fa fa-plus"></i></a>
-                        </div>
-                        {!! Form::select('source_id',$sources,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
-                        @error('source_id')
                         <p class="text-danger mt-2"> {{ $message }}</p>
                         @enderror
                     </div>
