@@ -26,15 +26,8 @@ class ServiceRequest extends FormRequest
         return [
             //
             'name'=>'required|max:150',
-            'description'=>'required',
-            'price'=>'required',
-            'servicecategory_id'=>'required',
+
         ];
     }
 
-    public function messages(){
-        return[
-            'servicecategory_id.required'=> 'You need to select or make a category',
-        ];
-    }
 }

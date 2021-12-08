@@ -18,7 +18,9 @@ class Billing extends Model
         'city',
         'postalCode',
         'VAT',
-        'user_id'
+        'user_id',
+        'phone',
+        'website',
     ];
 
     public function user()

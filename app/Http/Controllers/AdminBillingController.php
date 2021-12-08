@@ -59,6 +59,8 @@ class AdminBillingController extends Controller
         $billing->city = $request->city;
         $billing->postalCode = $request->postalCode;
         $billing->VAT = $request->VAT;
+        $billing->phone = $request->phone;
+        $billing->website = $request->website;
 
         $billing->save();
 
@@ -121,6 +123,8 @@ class AdminBillingController extends Controller
         $billing->city = $request->city;
         $billing->postalCode = $request->postalCode;
         $billing->VAT = $request->VAT;
+        $billing->phone = $request->phone;
+        $billing->website = $request->website;
 
         $billing->update();
 

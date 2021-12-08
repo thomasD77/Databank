@@ -52,13 +52,8 @@ class AdminBookingController extends Controller
         $services = Service::where('archived', 0)
             ->pluck('name', 'id');
 
-        $locations = Location::where('archived', 0)
-            ->pluck('name', 'id');
 
-        $statuses = Status::pluck('name', 'id')
-            ->all();
-
-        return view('admin.bookings.create', compact('clients', 'services', 'locations', 'statuses'));
+        return view('admin.bookings.create', compact('clients', 'services'));
     }
 
     /**
@@ -70,104 +65,23 @@ class AdminBookingController extends Controller
     public function store(Request $request)
     {
         //
-        $bookingTime = Carbon::parse($request->date . " " . $request->startTime);
-        if($bookingTime < now()->addHours(2))
-        {
-            Session::flash('date', 'You cant book in the past. Please select new date');
-            return redirect()->back();
-        }
+        $this->validate($request, [
+            'services'=>'required',
+            'client_id'=>'required',
+        ]);
 
-        if(Auth::user()->roles->first()->name == 'client')                                                                //Booking from Client
-        {
-            $this->validate($request, [
-                'services'=>'required',
-                'location_id'=>'required',
-                'date'=>'required',
-                'startTime'=>'required',
-            ]);
+        $booking = new Booking();
 
-            $booking = new Booking();
-            $booking->location_id = $request->location_id;
-            $booking->user_id = Auth::user()->id;
-            $booking->client_id = Auth::user()->id;
-            $booking->date = $request->date;
-            $booking->booking_request_admin = 1;
-            $booking->startTime = $request->startTime;
-            $booking->endTime = Carbon::parse($request->startTime)->addHour(2);                                         //Default endTime for Client
-            $booking->status_id = 1;
-            $booking->remarks = $request->remarks;
-        }
-        else                                                                                                            //Booking from other Role
-        {
-            if($request->startTime > $request->endTime ){
-                Session::flash('timeslot', 'Your End time has to ends after your Start time. Please do it again.');
-                return redirect()->back();
-            }
-            $this->validate($request, [
-                'client_id'=>'required',
-                'status_id'=>'required',
-                'services'=>'required',
-                'location_id'=>'required',
-                'date'=>'required',
-                'startTime'=>'required',
-                'endTime'=>'required',
-            ]);
-            $booking = new Booking();
-            $booking->location_id = $request->location_id;
-            $booking->client_id = $request->client_id;
-            $booking->user_id = Auth::user()->id;
-            $booking->status_id = $request->status_id;
-            $booking->date = $request->date;
-            $booking->startTime = $request->startTime;
-            $booking->endTime = $request->endTime;
-            $booking->remarks = $request->remarks;
-            $booking->booking_request_client = 1;
+        $booking->user_id = Auth::user()->id;
+        $booking->client_id = $request->client_id;
+        $booking->remarks = $request->remarks;
+        $booking->host = $request->host;
+        $booking->login = $request->login;
+        $booking->password = $request->password;
 
-            //Timeslot range
-            $start = Carbon::parse($request->startTime);
-            $end = Carbon::parse($request->endTime);
-            $range = $start->diffInMinutes($end);
-            $booking->timeslot_range = $range;
-        }
         $booking->save();
 
-        //Google Calendar credentials
-        $client = User::where('id', $booking->client_id)->first();
-        $booking->google_calendar_name = 'Booking' . "-" . $client->name . "-" . $booking->location->name . "-" . $booking->status->name;
-        $booking->update();
-
-        //wegschrijven van de tussentabel
-        $booking->services()->sync($request->services, false);
-
-
-        //Need to send mail
-        if($request->button_submit == 'sendMail')
-        {
-            $client_mail = $client->email;
-            $user_mail = User::findOrFail($booking->user_id)->email;
-
-            $emails = [ $client_mail, $user_mail];
-
-            Mail::to($emails)->send(new newBooking($booking));
-        }
-
-        //Google Calendar Booking
-        if(Auth::user()->roles->first()->name != 'client')
-        {
-            $startTime = Carbon::parse($request->date . ' ' . $request->startTime, 'GMT+02:00' );
-            $endTime = Carbon::parse($request->date . ' ' . $request->endTime, 'GMT+02:00' );
-
-
-            $event = Event::create([
-                'name' => $booking->google_calendar_name,
-                'startDateTime' => $startTime,
-                'endDateTime' => $endTime,
-                'calendarId' => $booking->location->google_calendar_id,
-            ]);
-
-            $booking->event_id = $event->id;
-            $booking->update();
-        }
+        $booking->services()->sync($request->services, true);
 
         \Brian2694\Toastr\Facades\Toastr::success('Booking Successfully Saved');
 
@@ -209,12 +123,9 @@ class AdminBookingController extends Controller
 
         $services = Service::where('archived', 0)
             ->pluck('name', 'id');
-        $locations = Location::where('archived', 0)
-            ->pluck('name', 'id');
-        $statuses = Status::pluck('name', 'id')
-            ->all();
 
-        return view('admin.bookings.edit', compact('clients', 'services', 'locations','statuses', 'booking'));
+
+        return view('admin.bookings.edit', compact('clients', 'services', 'booking'));
     }
 
     /**

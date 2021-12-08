@@ -79,6 +79,26 @@
                         </div>
 
                         <div class="form-group mb-4">
+                            {!! Form::label('firstname','Firstname:',['class'=>'form-label']) !!}
+                            {!! Form::label('firstname',$client->billing->firstname,['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('lastname','Lastname:',['class'=>'form-label']) !!}
+                            {!! Form::label('lastname',$client->billing->lastname,['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('phone','Phone:',['class'=>'form-label']) !!}
+                            {!! Form::label('phone',$client->billing->phone,['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('website','Website:',['class'=>'form-label']) !!}
+                            {!! Form::label('website',$client->billing->website,['class'=>'form-control']) !!}
+                        </div>
+
+                        <div class="form-group mb-4">
                             {!! Form::label('streetAddress1','Street Address 1:',['class'=>'form-label']) !!}
                             {!! Form::label('streetAddress1',$client->billing->streetAddress1,['class'=>'form-control']) !!}
                         </div>

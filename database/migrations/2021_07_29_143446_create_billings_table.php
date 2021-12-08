@@ -19,6 +19,8 @@ class CreateBillingsTable extends Migration
             $table->string('company')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('website')->nullable();
             $table->string('streetAddress1')->nullable();
             $table->string('streetAddress2')->nullable();
             $table->string('city')->nullable();

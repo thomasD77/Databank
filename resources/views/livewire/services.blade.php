@@ -5,7 +5,6 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Category</th>
             <th scope="col">Registered</th>
             <th scope="col">Actions</th>
         </tr>
@@ -16,7 +15,6 @@
                 <tr>
                     <td>{{$service->id ? $service->id : 'No ID'}}</td>
                     <td>{{$service->name ? $service->name : 'No Name'}}</td>
-                    <td>{{$service->servicecategory ? $service->servicecategory->name : 'No Category'}}</td>
                     <td>{{$service->created_at ? $service->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td class="text-center">
                         <div class="btn-group">

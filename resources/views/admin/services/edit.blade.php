@@ -49,29 +49,6 @@
                   @enderror
               </div>
 
-              <div class="col-6 form-group mb-4">
-                  {!! Form::label('price', 'Price:') !!}
-                  {!! Form::text('price', $service->price,['class'=>'form-control']) !!}
-                  @error('price')
-                  <p class="text-danger mt-2"> {{ $message }}</p>
-                  @enderror
-              </div>
-
-              <div class="col-6 form-group  mb-4">
-                  {!! Form::label('Select Category:') !!}
-                  {!! Form::select('servicecategory_id',$servicecategories,$service->servicecategory->name,['class'=>'form-control'])!!}
-                  @error('servicecategory_id')
-                  <p class="text-danger mt-2"> {{ $message }}</p>
-                  @enderror
-              </div>
-
-              <div class="form-group  mb-4">
-                  {!! Form::label('description', 'Description:') !!}
-                  {!! Form::textarea('description',$service->description,['class'=>'form-control', 'id'=>'js-ckeditor5-classic']) !!}
-                  @error('description')
-                  <p class="text-danger mt-2"> {{ $message }}</p>
-                  @enderror
-              </div>
 
               <div class="d-flex justify-content-end">
                   <div class="form-group mr-1">

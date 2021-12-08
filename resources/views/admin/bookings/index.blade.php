@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Bookings
+                        Credentials
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Bookings
+                            Credentials
                         </li>
                     </ol>
                 </nav>
@@ -57,7 +57,7 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Bookings
+                    Credentials
                 </h3>
                 @php
                     use Illuminate\Support\Carbon;$now = Carbon::now();
@@ -67,7 +67,7 @@
                 @endphp
 
 
-                <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Booking" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
+                <a href="{{route('bookings.create')}}"><button data-bs-toggle="tooltip" title="New Credential" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
                 @canany(['is_superAdmin', 'is_admin', 'is_employee'])
                     <a href="{{route('bookings.archive')}}">
                         <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">

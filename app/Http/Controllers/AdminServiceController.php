@@ -48,10 +48,6 @@ class AdminServiceController extends Controller
         //
         $service = new Service();
         $service->name = $request->name;
-        $service->price = $request->price;
-        $service->servicecategory_id = $request->servicecategory_id;
-        $service->description = $request->description;
-        $service['slug'] = Str::slug($request->name, '-');
 
         $service->save();
 
@@ -101,9 +97,6 @@ class AdminServiceController extends Controller
         //
         $service = Service::findOrFail($id);
         $service->name = $request->name;
-        $service->price = $request->price;
-        $service->description = $request->description;
-        $service->servicecategory_id = $request->servicecategory_id;
         $service->update();
 
         \Brian2694\Toastr\Facades\Toastr::success('Service Successfully Updated');

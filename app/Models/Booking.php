@@ -10,21 +10,13 @@ class Booking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'location_id',
         'user_id',
         'client_id',
-        'status_id',
-        'date',
-        'startTime',
-        'endTime',
         'remarks',
         'archived',
-        'google_calendar_name',
-        'event_id',
-        'booking_request_admin',
-        'booking_request_client',
-        'approved',
-        'timeslot_range',
+        'host',
+        'password',
+        'login',
     ];
 
     // Een op Veel relaties

@@ -53,6 +53,12 @@ class AdminClientController extends Controller
 
         $client->save();
 
+        DB::table('user_role')->insert([                                                                          //Set Client ID in user_role migration
+            'user_id' => $client->id,
+            'role_id' => '3',
+            'created_at'=>Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'),]);
+
 
         \Brian2694\Toastr\Facades\Toastr::success('Client Successfully Saved');
 

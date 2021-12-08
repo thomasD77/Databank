@@ -15,20 +15,13 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->integer('location_id')->index();
             $table->integer('user_id')->index();
             $table->integer('client_id')->index();
-            $table->integer('status_id')->index();
-            $table->date('date')->nullable();
-            $table->time('startTime')->nullable();
-            $table->time('endTime')->nullable();
             $table->text('remarks')->nullable();
-            $table->text('google_calendar_name')->nullable();
-            $table->string('event_id')->nullable();
-            $table->string('booking_request_admin')->nullable();
-            $table->string('booking_request_client')->nullable();
-            $table->string('approved')->nullable();
-            $table->integer('timeslot_range')->nullable();
+            $table->string('host')->nullable();
+            $table->string('password')->nullable();
+            $table->string('login')->nullable();
+
             $table->boolean('archived')->default(0);
             $table->timestamps();
         });

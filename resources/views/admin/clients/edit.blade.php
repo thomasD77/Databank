@@ -73,6 +73,226 @@
     </div>
     <!-- END Client Profile -->
 
+    <!-- Address Information -->
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">Address Information</h3>
+        </div>
+
+        @if($client->billing == null)
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Create Address information for your Happy Client.
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+
+                        {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminBillingController@store']]) !!}
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-company', 'Company (Optional):',['class'=>'form-label']) !!}
+                            {!! Form::text('company',$client->billing? $client->billing->company : "",['class'=>'form-control']) !!}
+                            @error('company')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <input type="hidden" value="{{$client->id}}" name="client_id">
+
+                        <div class="row mb-4">
+                            <div class="form-group col-6">
+                                {!! Form::label('one-profile-edit-firstname', 'Firstname:',['class'=>'form-label']) !!}
+                                {!! Form::text('firstname',$client->billing? $client->billing->firstname : "",['class'=>'form-control']) !!}
+                                @error('firstname')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group col-6">
+                                {!! Form::label('one-profile-edit-lastname', 'Lastname:',['class'=>'form-label']) !!}
+                                {!! Form::text('lastname',$client->billing? $client->billing->lastname : "",['class'=>'form-control']) !!}
+                                @error('lastname')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-phone', 'Phone:',['class'=>'form-label']) !!}
+                            {!! Form::text('phone',$client->billing? $client->billing->phone : "",['class'=>'form-control']) !!}
+                            @error('phone')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-website', 'Website:',['class'=>'form-label']) !!}
+                            {!! Form::text('website',$client->billing? $client->billing->website : "",['class'=>'form-control']) !!}
+                            @error('website')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-streetAddress1', 'Street Address 1:',['class'=>'form-label']) !!}
+                            {!! Form::text('streetAddress1',$client->billing? $client->billing->streetAddress1 : "",['class'=>'form-control']) !!}
+                            @error('streetAddress1')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-streetAddress2', 'Street Address 2 (Optional):',['class'=>'form-label']) !!}
+                            {!! Form::text('streetAddress2',$client->billing? $client->billing->streetAddress2 : "",['class'=>'form-control']) !!}
+                            @error('streetAddress2')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-city', 'City:',['class'=>'form-label']) !!}
+                            {!! Form::text('city',$client->billing? $client->billing->city : "",['class'=>'form-control']) !!}
+                            @error('city')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-postalCode', 'Postal Code:',['class'=>'form-label']) !!}
+                            {!! Form::text('postalCode',$client->billing? $client->billing->postalCode : "",['class'=>'form-control']) !!}
+                            @error('postalCode')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-VAT', 'VAT Number:',['class'=>'form-label']) !!}
+                            {!! Form::text('VAT',$client->billing? $client->billing->VAT : "",['class'=>'form-control']) !!}
+                            @error('VAT')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group mr-1">
+                                {!! Form::submit('Save',['class'=>'btn btn-alt-primary']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="block-content">
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="fs-sm text-muted">
+                            Update Address information for your Happy Client.
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+
+                        {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminBillingController@update', $client->billing->id]]) !!}
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-company', 'Company (Optional):',['class'=>'form-label']) !!}
+                            {!! Form::text('company',$client->billing? $client->billing->company : "",['class'=>'form-control']) !!}
+                            @error('company')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="form-group col-6">
+                                {!! Form::label('one-profile-edit-firstname', 'Firstname:',['class'=>'form-label']) !!}
+                                {!! Form::text('firstname',$client->billing? $client->billing->firstname : "",['class'=>'form-control']) !!}
+                                @error('firstname')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group col-6">
+                                {!! Form::label('one-profile-edit-lastname', 'Lastname:',['class'=>'form-label']) !!}
+                                {!! Form::text('lastname',$client->billing? $client->billing->lastname : "",['class'=>'form-control']) !!}
+                                @error('lastname')
+                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-phone', 'Phone:',['class'=>'form-label']) !!}
+                            {!! Form::text('phone',$client->billing? $client->billing->phone : "",['class'=>'form-control']) !!}
+                            @error('phone')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-website', 'Website:',['class'=>'form-label']) !!}
+                            {!! Form::text('website',$client->billing? $client->billing->website : "",['class'=>'form-control']) !!}
+                            @error('website')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-streetAddress1', 'Street Address 1:',['class'=>'form-label']) !!}
+                            {!! Form::text('streetAddress1',$client->billing? $client->billing->streetAddress1 : "",['class'=>'form-control']) !!}
+                            @error('streetAddress1')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-streetAddress2', 'Street Address 2 (Optional):',['class'=>'form-label']) !!}
+                            {!! Form::text('streetAddress2',$client->billing? $client->billing->streetAddress2 : "",['class'=>'form-control']) !!}
+                            @error('streetAddress2')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-city', 'City:',['class'=>'form-label']) !!}
+                            {!! Form::text('city',$client->billing? $client->billing->city : "",['class'=>'form-control']) !!}
+                            @error('city')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-postalCode', 'Postal Code:',['class'=>'form-label']) !!}
+                            {!! Form::text('postalCode',$client->billing? $client->billing->postalCode : "",['class'=>'form-control']) !!}
+                            @error('postalCode')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-4">
+                            {!! Form::label('one-profile-edit-VAT', 'VAT Number:',['class'=>'form-label']) !!}
+                            {!! Form::text('VAT',$client->billing? $client->billing->VAT : "",['class'=>'form-control']) !!}
+                            @error('VAT')
+                            <p class="text-danger mt-2"> {{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div class="form-group mr-1">
+                                {!! Form::submit('Save',['class'=>'btn btn-alt-primary']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    @endif
+    <!-- END Address Information -->
+
+    </div>
+    <!-- END Page Content -->
+
+
+
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
