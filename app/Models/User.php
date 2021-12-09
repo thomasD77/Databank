@@ -63,23 +63,5 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Avatar::class);
     }
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
 
-    public function permissions()
-    {
-        return $this->roles->map->permissions->flatten()->pluck('name')->unique();
-    }
-
-    public function loyal()
-    {
-        return $this->belongsTo(Loyal::class);
-    }
-
-    public function source()
-    {
-        return $this->belongsTo(Source::class);
-    }
 }

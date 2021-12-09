@@ -31,7 +31,7 @@ class AdminBookingController extends Controller
     {
         //
         $bookings = Booking::paginate(15);
-        return view('admin.bookings.index', compact('bookings'));
+        return view('admin.credentials.index', compact('bookings'));
     }
 
     /**
@@ -53,7 +53,7 @@ class AdminBookingController extends Controller
             ->pluck('name', 'id');
 
 
-        return view('admin.bookings.create', compact('clients', 'services'));
+        return view('admin.credentials.create', compact('clients', 'services'));
     }
 
     /**
@@ -85,7 +85,7 @@ class AdminBookingController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('Booking Successfully Saved');
 
-        return redirect('/admin/bookings');
+        return redirect('/admin/credentials');
 
     }
 
@@ -100,7 +100,7 @@ class AdminBookingController extends Controller
         //
         $booking = Booking::findOrFail($id);
 
-        return view('admin.bookings.show', compact('booking'));
+        return view('admin.credentials.show', compact('booking'));
     }
 
     /**
@@ -125,7 +125,7 @@ class AdminBookingController extends Controller
             ->pluck('name', 'id');
 
 
-        return view('admin.bookings.edit', compact('clients', 'services', 'booking'));
+        return view('admin.credentials.edit', compact('clients', 'services', 'booking'));
     }
 
     /**
@@ -242,7 +242,7 @@ class AdminBookingController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('Booking Successfully Updated');
 
-        return redirect('/admin/bookings');
+        return redirect('/admin/credentials');
     }
 
     /**
@@ -261,7 +261,7 @@ class AdminBookingController extends Controller
         $bookings = Booking::where('archived', 1)
             ->latest()
             ->paginate(20);
-        return view('admin.bookings.archive', compact('bookings'));
+        return view('admin.credentials.archive', compact('bookings'));
     }
 
     public function approved(Request $request)

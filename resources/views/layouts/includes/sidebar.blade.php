@@ -171,7 +171,7 @@
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('bookings.index')}}">
+                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('credentials.index')}}">
                                 <span class="nav-main-link-name">List</span>
                             </a>
                         </li>
@@ -181,7 +181,7 @@
                             </a>
                         </li>
 {{--                        <li class="nav-main-item">--}}
-{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('bookings.agenda')}}">--}}
+{{--                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('credentials.agenda')}}">--}}
 {{--                                <span class="nav-main-link-name">Agenda</span>--}}
 {{--                            </a>--}}
 {{--                        </li>--}}

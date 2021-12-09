@@ -27,7 +27,6 @@ class ClientRequest extends FormRequest
             //
             'name'=>'required|max:150',
             'email'=>'required|max:150',
-
         ];
     }
 }

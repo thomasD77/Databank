@@ -132,13 +132,11 @@
                 Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
             -->
 
-            @canany(['is_superAdmin', 'is_admin', 'is_employee'])
-                @include('layouts.includes.sidebar')
-            @endcanany
 
-            @can('is_client')
-                @include('layouts.includes.sidebarClient')
-            @endcan
+                @include('layouts.includes.sidebar')
+
+
+
 
             <!-- Header -->
             <header id="page-header">

@@ -30,8 +30,6 @@ class BillingRequest extends FormRequest
             'streetAddress1'=>'required|max:150',
             'city'=>'required|max:150',
             'postalCode'=>'required|max:50',
-            'phone'=>'required|max:50',
-            'website'=>'required|max:50',
         ];
     }
 
@@ -42,8 +40,6 @@ class BillingRequest extends FormRequest
             'streetAddress1.required'=> 'Address is required!',
             'city.required'=> 'City is required!',
             'postalCode.required'=> 'Postal Code is required!',
-            'phone.required'=> 'Phone is required!',
-            'website.required'=> 'Website is required!',
         ];
     }
 }

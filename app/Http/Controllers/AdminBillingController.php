@@ -113,6 +113,7 @@ class AdminBillingController extends Controller
     public function update(BillingRequest $request, $id)
     {
         //
+
         $billing = Billing::findOrFail($id);
 
         $billing->company = $request->company;

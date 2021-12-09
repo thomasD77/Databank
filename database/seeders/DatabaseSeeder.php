@@ -14,20 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call([
-            BookingsTableSeeder::class,
-            LoyalsTableSeeder::class,
-            PostCategoriesTableSeeder::class,
-            PostsTableSeeder::class,
-            PromosTableSeeder::class,
-            CommentsTableSeeder::class,
-            ServiceCategoriesTableSeeder::class,
-            ServicesTableSeeder::class,
-            SourcesTableSeeder::class,
-            SubmissionsTableSeeder::class,
-            TestimonialsTableSeeder::class,
-            UsersTableSeeder::class,
-            LocationsTableSeeder::class,
-        ]);
+
     }
 }

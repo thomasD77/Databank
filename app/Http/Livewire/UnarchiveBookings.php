@@ -24,7 +24,7 @@ class UnarchiveBookings extends Component
             ->latest()
             ->paginate(20);
 
-        return view('livewire.unarchive-bookings', compact('bookings'));
+        return view('livewire.unarchive-credentials', compact('bookings'));
     }
 
 }

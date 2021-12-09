@@ -35,6 +35,6 @@ class Bookings extends Component
                 ->paginate(20);
         }
 
-        return view('livewire.bookings', compact('bookings'));
+        return view('livewire.credentials', compact('bookings'));
     }
 }

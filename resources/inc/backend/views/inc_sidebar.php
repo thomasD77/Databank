@@ -190,12 +190,12 @@ use Illuminate\Support\Facades\Auth;
 <!--                      </a>-->
 <!--                      <ul class="nav-main-submenu">-->
 <!--                          <li class="nav-main-item">-->
-<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('bookings.index') ?><!--">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('credentials.index') ?><!--">-->
 <!--                                  <span class="nav-main-link-name">List</span>-->
 <!--                              </a>-->
 <!--                          </li>-->
 <!--                          <li class="nav-main-item">-->
-<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/slick') ? ' active' : '' ?><!--" href=" --><?php //echo route('bookings.agenda')  ?><!--">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/slick') ? ' active' : '' ?><!--" href=" --><?php //echo route('credentials.agenda')  ?><!--">-->
 <!--                                  <span class="nav-main-link-name">Agenda</span>-->
 <!--                              </a>-->
 <!--                          </li>-->
