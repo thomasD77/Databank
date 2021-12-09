@@ -6,7 +6,7 @@
             <th scope="col">#</th>
             <th scope="col">Client</th>
             <th scope="col">Host</th>
-            <th scope="col">credential</th>
+            <th scope="col">Subject</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -17,8 +17,13 @@
                     <td>{{$credential->id ? $credential->id : 'No ID'}}</td>
                     <td>{{$credential->client ? $credential->client->name : 'No Name'}}</td>
                     <td>{{$credential->host ? $credential->host : 'No Host'}}</td>
-                    <td>{{$credential->credential ? $credential->credential : 'No credential'}}</td>
+                    <td>{{$credential->subject->name ? $credential->subject->name : 'No credential'}}</td>
                     <td>
+                        <a href="{{route('credentials.edit', $credential->id)}}">
+                            <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit credential">
+                                <i class="fa fa-fw fa-pencil-alt"></i>
+                            </button>
+                        </a>
                         <a href="{{route('credentials.show', $credential->id)}}">
                             <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show credential">
                                 <i class="far fa-eye"></i>

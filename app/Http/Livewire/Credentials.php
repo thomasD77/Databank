@@ -18,9 +18,8 @@ class Credentials extends Component
     public function render()
     {
 
-        $credentials = Credential::with([ 'user'])
+        $credentials = Credential::with([ 'user', 'client', 'subject'])
             ->where('archived', 0)
-            ->where('client_id', Auth::user()->id)
             ->latest()
             ->paginate(20);
 

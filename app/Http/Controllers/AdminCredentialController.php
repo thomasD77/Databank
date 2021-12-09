@@ -6,6 +6,7 @@ use App\Models\Credential;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminCredentialController extends Controller
 {
@@ -69,8 +70,6 @@ class AdminCredentialController extends Controller
         $credential->remarks = $request->remarks;
 
         $credential->save();
-
-        $credential->services()->sync($request->services, true);
 
         \Brian2694\Toastr\Facades\Toastr::success('credential Successfully Saved');
 
@@ -143,8 +142,6 @@ class AdminCredentialController extends Controller
         $credential->remarks = $request->remarks;
 
         $credential->update();
-
-        $credential->services()->sync($request->services, false);
 
         \Brian2694\Toastr\Facades\Toastr::success('credential Successfully Updated');
 

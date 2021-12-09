@@ -11,7 +11,7 @@
             <div class="my-3">
                 <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
             </div>
-            <h1 class="h2 text-white mb-0">Create Booking</h1>
+            <h1 class="h2 text-white mb-0">Create Credential</h1>
             <h2 class="h4 fw-normal text-white-75">
                 <?php echo Auth::user()->name; ?>
             </h2>
@@ -38,7 +38,7 @@
                     </p>
                 </div>
                 <div class="col-lg-8 col-xl-5">
-                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminBookingController@store'],
+                    {!! Form::open(['method'=>'POST', 'action'=>['App\Http\Controllers\AdminCredentialController@store'],
                         'files'=>false])
                    !!}
 
@@ -51,9 +51,9 @@
                     </div>
 
                     <div class="form-group mb-4">
-                        {!! Form::label('service','Select Service:', ['class'=>'form-label']) !!}
-                        {!! Form::select('services',$services,null,['class'=>'form-control', 'placeholder'=>'select...', 'multiple'=>'multiple'])!!}
-                        @error('services')
+                        {!! Form::label('subject','Select Subject:', ['class'=>'form-label']) !!}
+                        {!! Form::select('subject_id',$subjects,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                        @error('subject_id')
                         <p class="text-danger mt-2"> {{ $message }}</p>
                         @enderror
                     </div>
