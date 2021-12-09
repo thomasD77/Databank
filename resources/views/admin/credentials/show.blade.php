@@ -40,7 +40,7 @@
 
                     <div class="form-group mb-4">
                         {!! Form::label('client','Client:',['class'=>'form-label']) !!}
-                        {!! Form::label('client_id',$credential->subject->name ,['class'=>'form-control']) !!}
+                        {!! Form::label('client_id',$credential->client->name ,['class'=>'form-control']) !!}
                     </div>
 
                     <div class="form-group mb-4">

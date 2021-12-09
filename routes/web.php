@@ -60,10 +60,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
 
     //Booking Routes
     Route::resource('credentials', App\Http\Controllers\AdminCredentialController::class);
-    Route::get('archive/credentials', 'App\Http\Controllers\AdminBookingController@archive')->name('credentials.archive');
-    Route::post('approved/credentials', 'App\Http\Controllers\AdminBookingController@approved');
-    Route::resource('services', App\Http\Controllers\AdminServiceController::class);
-    Route::get('archive/services', 'App\Http\Controllers\AdminServiceController@archive')->name('services.archive');
-    Route::get('layout', 'App\Http\Controllers\AdminServiceController@layout');
+    Route::get('archive/credentials', 'App\Http\Controllers\AdminCredentialController@archive')->name('credentials.archive');
+    Route::resource('subjects', App\Http\Controllers\AdminSubjectController::class);
+    Route::get('archive/subjects', 'App\Http\Controllers\AdminSubjectController@archive')->name('subjects.archive');
 
 });

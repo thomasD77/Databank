@@ -66,7 +66,7 @@
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('unarchive-bookings')
+                @livewire('unarchive-credentials')
             </div>
         </div>
         <!-- END Dynamic Table Full -->

@@ -31,7 +31,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        Category
+                        Subjects
                     </h1>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Category
+                            Subjects
                         </li>
                     </ol>
                 </nav>
@@ -56,10 +56,10 @@
         <div class="block block-rounded row">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    Category
+                    Subjects
                 </h3>
-                <a href="{{route('services.create')}}"><button data-bs-toggle="tooltip" title="New Service" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
-                <a href="{{route('services.archive')}}">
+                <a href="{{route('subjects.create')}}"><button data-bs-toggle="tooltip" title="New Service" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
+                <a href="{{route('subjects.archive')}}">
                     <button class="btn btn-secondary rounded mx-2" data-bs-toggle="tooltip" title="Archive">
                         <i class="fa fa-archive "></i>
                     </button>
@@ -67,7 +67,7 @@
             </div>
             <div class="block-content block-content-full overflow-scroll">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                @livewire('services')
+                @livewire('subjects')
             </div>
         </div>
         <!-- END Dynamic Table Full -->

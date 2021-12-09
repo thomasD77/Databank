@@ -11,18 +11,18 @@
         </tr>
         </thead>
         <tbody>
-        @if($services)
-            @foreach($services as $service)
+        @if($subjects)
+            @foreach($subjects as $subject)
                 <tr>
-                    <td>{{$service->id ? $service->id : 'No ID'}}</td>
-                    <td>{{$service->name ? $service->name : 'No Name'}}</td>
-                    <td>{{$service->servicecategory ? $service->servicecategory->name : 'No Category'}}</td>
-                    <td>{{$service->created_at ? $service->created_at->diffForHumans() : 'Not Verified'}}</td>
+                    <td>{{$subject->id ? $subject->id : 'No ID'}}</td>
+                    <td>{{$subject->name ? $subject->name : 'No Name'}}</td>
+                    <td>{{$subject->subjectcategory ? $subject->subjectcategory->name : 'No Category'}}</td>
+                    <td>{{$subject->created_at ? $subject->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveService({{$service->id}})"><i class="si si-refresh "></i></button>
-                            <a href="{{route('services.show', $service->id)}}">
-                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit service">
+                            <button class="btn btn-sm btn-alt-secondary" wire:click="unArchiveSubject({{$subject->id}})"><i class="si si-refresh "></i></button>
+                            <a href="{{route('subjects.show', $subject->id)}}">
+                                <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit subject">
                                     <i class="far fa-eye"></i>
                                 </button>
                             </a>
@@ -35,5 +35,5 @@
     </table>
 </div>
 <div class="d-flex justify-content-center">
-    {!! $services->links()  !!}
+    {!! $subjects->links()  !!}
 </div>

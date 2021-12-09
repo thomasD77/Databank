@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class AdminSubjectController extends Controller
@@ -14,6 +15,7 @@ class AdminSubjectController extends Controller
     public function index()
     {
         //
+        return view('admin.subjects.index');
     }
 
     /**
@@ -24,6 +26,7 @@ class AdminSubjectController extends Controller
     public function create()
     {
         //
+        return view('admin.subjects.create');
     }
 
     /**
@@ -35,6 +38,14 @@ class AdminSubjectController extends Controller
     public function store(Request $request)
     {
         //
+        $subject = new Subject();
+        $subject->name = $request->name;
+
+        $subject->save();
+
+        \Brian2694\Toastr\Facades\Toastr::success('Subject Successfully Saved');
+
+        return redirect('admin/subjects');
     }
 
     /**
@@ -57,6 +68,9 @@ class AdminSubjectController extends Controller
     public function edit($id)
     {
         //
+        $subject = Subject::findOrFail($id);
+
+        return view('admin.subjects.edit', compact('subject'));
     }
 
     /**
@@ -69,6 +83,13 @@ class AdminSubjectController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $subject = Subject::findOrFail($id);
+        $subject->name = $request->name;
+        $subject->update();
+
+        \Brian2694\Toastr\Facades\Toastr::success('subject Successfully Updated');
+
+        return redirect('/admin/subjects');
     }
 
     /**
@@ -80,5 +101,13 @@ class AdminSubjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function archive()
+    {
+        $subjects = Subject::where('archived', 1)
+            ->latest()
+            ->paginate(10);
+        return view('admin.subjects.archive', compact('subjects'));
     }
 }

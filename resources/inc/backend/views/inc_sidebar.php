@@ -215,7 +215,7 @@ use Illuminate\Support\Facades\Auth;
 <!--                              </a>-->
 <!--                          </li>-->
 <!--                          <li class="nav-main-item">-->
-<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('services.index') ?><!--">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('subjects.index') ?><!--">-->
 <!--                                  <span class="nav-main-link-name">Services</span>-->
 <!--                              </a>-->
 <!--                          </li>-->

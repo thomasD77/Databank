@@ -1,8 +1,14 @@
 <?php require '../resources/inc/_global/config.php'; ?>
 <?php require '../resources/inc/backend/config.php'; ?>
 <?php require '../resources/inc/_global/views/head_start.php'; ?>
+
+<!-- Page JS Plugins CSS -->
+<?php $one->get_css('js/plugins/cropperjs/cropper.min.css'); ?>
+
 <?php require '../resources/inc/_global/views/head_end.php'; ?>
 <?php require '../resources/inc/_global/views/page_start.php'; ?>
+
+
 
 <!-- Hero -->
 <div class="bg-primary-dark" style="background-image: url({{asset('images/general/banner6.png')}}); background-size: cover  ; background-repeat: no-repeat ">
@@ -10,12 +16,12 @@
       <div class="my-3">
           <img class="rounded-circle border border-white border border-3" height="80" width="80" src="{{Auth::user()->avatar ? asset('/') . Auth::user()->avatar->file : 'http://placehold.it/62x62'}}" alt="{{Auth::user()->name}}">
       </div>
-      <h1 class="h2 text-white mb-0">Add Service</h1>
+      <h1 class="h2 text-white mb-0">Edit Subjects</h1>
       <h2 class="h4 fw-normal text-white-75">
           <?php echo Auth::user()->name; ?>
       </h2>
-      <a class="btn btn-alt-secondary" href="{{route('services.index')}}">
-        <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Services
+      <a class="btn btn-alt-secondary" href="{{route('subjects.index')}}">
+        <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Subjectss
       </a>
     </div>
 </div>
@@ -26,26 +32,27 @@
   <!-- User Profile -->
   <div class="block block-rounded">
     <div class="block-header block-header-default">
-      <h3 class="block-title">New Service</h3>
+      <h3 class="block-title">Edit Subjects</h3>
     </div>
     <div class="block-content">
           <div class="row push">
 
           <div class="col-12">
 
-              {!! Form::open(['method'=>'POST', 'action'=>'App\Http\Controllers\AdminServiceController@store','files'=>true]) !!}
+              {!! Form::open(['method'=>'PATCH', 'action'=>['App\Http\Controllers\AdminSubjectController@update',$subject->id],'files'=>true])!!}
 
               <div class="col-6 form-group mb-4">
                   {!! Form::label('name', 'Name:') !!}
-                  {!! Form::text('name',null,['class'=>'form-control']) !!}
+                  {!! Form::text('name',$subject->name,['class'=>'form-control']) !!}
                   @error('name')
                   <p class="text-danger mt-2"> {{ $message }}</p>
                   @enderror
               </div>
 
+
               <div class="d-flex justify-content-end">
                   <div class="form-group mr-1">
-                      {!! Form::submit('Create',['class'=>'btn btn-alt-primary']) !!}
+                      {!! Form::submit('Update',['class'=>'btn btn-alt-primary']) !!}
                   </div>
                   {!! Form::close() !!}
               </div>
@@ -56,7 +63,11 @@
   <!-- END User Profile -->
 
 
-<!-- Page JS Plugins -->
+
+
+
+
+    <!-- Page JS Plugins -->
 
 <?php require '../resources/inc/_global/views/page_end.php'; ?>
 <?php require '../resources/inc/_global/views/footer_start.php'; ?>
@@ -66,7 +77,10 @@
 <!-- Page JS Helpers (CKEditor 5 plugins) -->
     <script>One.helpersOnLoad(['js-ckeditor5']);</script>
 
+    <!-- Page JS Plugins -->
+<?php $one->get_js('js/plugins/cropperjs/cropper.min.js'); ?>
+
+<!-- Page JS Code -->
+<?php $one->get_js('js/pages/be_comp_image_cropper.js'); ?>
 
 <?php require '../resources/inc/_global/views/footer_end.php'; ?>
-
-

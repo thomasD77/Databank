@@ -6,7 +6,7 @@
                         <span class="smini-visible">
                             <i class="fa fa-circle-notch text-primary"></i>
                         </span>
-            <span class="smini-hide fs-5 tracking-wider"><?php echo \App\Models\CompanyCredential::first()->companyName ?></span>
+            <span class="smini-hide fs-5 tracking-wider"><?php echo Auth::user()->billing ? Auth::user()->billing->company : "DataBank" ?></span>
         </a>
         <!-- END Logo -->
 
@@ -115,7 +115,7 @@
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{ route('services.index') }}">
+                            <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{ route('subjects.index') }}">
                                 <span class="nav-main-link-name">Subject</span>
                             </a>
                         </li>

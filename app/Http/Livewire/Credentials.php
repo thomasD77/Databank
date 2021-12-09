@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Credentials extends Component
 {
-    public function archivecredential($id)
+    public function archiveCredential($id)
     {
         $credential = Credential::findOrFail($id);
         $credential->archived = 1;
