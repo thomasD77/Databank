@@ -5,6 +5,7 @@
             <th scope="col">ID</th>
             <th scope="col">name</th>
             <th scope="col">email</th>
+            <th scope="col">url</th>
             <th scope="col">Registered</th>
             <th scope="col">Actions</th>
         </tr>
@@ -14,8 +15,9 @@
             @foreach($clients as $client)
                 <tr>
                     <td>{{$client->id ? $client->id : 'No ID'}}</td>
-                    <td>{{$client->name ? $client->name : 'No name'}}</td>
+                    <td><a href="{{ route('clients.show', $client->id) }}"><strong>{{$client->name ? $client->name : 'No name'}}</strong></a></td>
                     <td>{{$client->email ? $client->email : 'No email'}}</td>
+                    <td>{{$client->billing ? $client->billing->website : 'No website'}}</td>
                     <td>{{$client->created_at ? $client->created_at->diffForHumans() : 'Not Verified'}}</td>
                     <td>
                         <div class="btn-group">
