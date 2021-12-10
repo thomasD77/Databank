@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\Credentials;
 use App\Http\Requests\ClientRequest;
 use App\Models\Client;
+use App\Models\Credential;
 use App\Models\Loyal;
 use App\Models\Source;
 use App\Models\User;
@@ -74,8 +76,14 @@ class AdminClientController extends Controller
     public function show($id)
     {
         //
-                $client = User::findOrFail($id);
-        return view('admin.clients.show', compact('client'));
+        $client = User::findOrFail($id);
+
+        $credentials = Credential::query()
+            ->with(['client', 'subject'])
+            ->where('client_id', $client->id)
+            ->paginate(15);
+
+        return view('admin.clients.show', compact('client', 'credentials'));
     }
 
     /**

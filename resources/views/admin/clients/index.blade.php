@@ -40,7 +40,7 @@
                             <a class="link-fx" href="javascript:void(0)">DataTable</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            Clients
+                            <a href="">Clients</a>
                         </li>
                     </ol>
                 </nav>

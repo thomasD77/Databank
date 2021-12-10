@@ -14,121 +14,191 @@
             <h2 class="h4 fw-normal text-white-75">
                 <?php echo Auth::user()->name; ?>
             </h2>
-            <a class="btn btn-alt-secondary" href="{{ asset('/dashboard') }}">
-                <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Dashboard
+            <a class="btn btn-alt-secondary" href="{{ route('clients.index') }}">
+                <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Clients
             </a>
         </div>
 </div>
 <!-- END Hero -->
 
 <!-- Page Content -->
-<div class="content content-boxed">
+<div class="">
 
-    <!-- Client Profile -->
+    <!-- Block Tabs Animated Slide Right -->
     <div class="block block-rounded">
-        <div class="block-header block-header-default">
-            <h3 class="block-title">Client Profile</h3>
-        </div>
-        <div class="block-content">
-            <div class="row push">
-                <div class="col-lg-4">
-                    <p class="fs-sm text-muted">
-                        Here you can Check your Happy Client.
-                    </p>
+        <ul class="nav nav-tabs nav-tabs-block" role="tablist">
+
+            <li class="nav-item">
+                <button class="nav-link active" id="btabs-animated-slideright-home-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-home" role="tab" aria-controls="btabs-animated-slideright-home" aria-selected="true">Information</button>
+            </li>
+
+            <li class="nav-item">
+                <button class="nav-link" id="btabs-animated-slideright-profile-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-profile" role="tab" aria-controls="btabs-animated-slideright-profile" aria-selected="false">Address</button>
+            </li>
+
+            <li class="nav-item">
+                <button class="nav-link" id="btabs-animated-slideright-contact-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-contact" role="tab" aria-controls="btabs-animated-slideright-contact" aria-selected="false">Credentials</button>
+            </li>
+
+            <li class="nav-item">
+                <button class="nav-link" id="btabs-animated-slideright-docs-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-docs" role="tab" aria-controls="btabs-animated-slideright-docs" aria-selected="false">Docs</button>
+            </li>
+        </ul>
+        <div class="block-content tab-content overflow-hidden">
+            <div class="tab-pane fade fade-right show active" id="btabs-animated-slideright-home" role="tabpanel" aria-labelledby="btabs-animated-slideright-home-tab">
+                <!-- Client Profile -->
+                <div class="block block-rounded">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Client Profile</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="row push">
+                            <div class="col-lg-4">
+                                <p class="fs-sm text-muted">
+                                    Here you can Check your Happy Client.
+                                </p>
+                            </div>
+                            <div class="col-lg-8 col-xl-5">
+
+                                <div class="form-group mb-4">
+                                    {!! Form::label('firstname','Name:',['class'=>'form-label']) !!}
+                                    {!! Form::label('firstname',$client->name ,['class'=>'form-control']) !!}
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
+                                    {!! Form::label('email',$client->email,['class'=>'form-control']) !!}
+                                </div>
+
+                                <div class="form-group mb-4">
+                                    {!! Form::label('remarks','Remarks:',['class'=>'form-label']) !!}
+                                    {!! Form::label('remarks',$client->remarks ,['class'=>'form-control']) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-8 col-xl-5">
+                <!-- END Client Profile -->
+            </div>
+            <div class="tab-pane fade fade-right" id="btabs-animated-slideright-profile" role="tabpanel" aria-labelledby="btabs-animated-slideright-profile-tab">
+                <!-- Address Information -->
+                    <div class="block block-rounded">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Address Information</h3>
+                        </div>
+                        <div class="block-content">
+                            <div class="row push">
+                                <div class="col-lg-4">
+                                    <p class="fs-sm text-muted">
+                                        Address information for your Happy Client.
+                                    </p>
+                                </div>
+                                <div class="col-lg-8 col-xl-5">
+                                    @if($client->billing)
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('company','Company (Optional):',['class'=>'form-label']) !!}
+                                        {!! Form::label('company',$client->billing->company,['class'=>'form-control']) !!}
+                                    </div>
 
-                    <div class="form-group mb-4">
-                        {!! Form::label('firstname','Name:',['class'=>'form-label']) !!}
-                        {!! Form::label('firstname',$client->name ,['class'=>'form-control']) !!}
-                    </div>
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('firstname','Firstname:',['class'=>'form-label']) !!}
+                                        {!! Form::label('firstname',$client->billing->firstname,['class'=>'form-control']) !!}
+                                    </div>
 
-                    <div class="form-group mb-4">
-                        {!! Form::label('email','E-mail:', ['class'=>'form-label']) !!}
-                        {!! Form::label('email',$client->email,['class'=>'form-control']) !!}
-                    </div>
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('lastname','Lastname:',['class'=>'form-label']) !!}
+                                        {!! Form::label('lastname',$client->billing->lastname,['class'=>'form-control']) !!}
+                                    </div>
 
-                    <div class="form-group mb-4">
-                        {!! Form::label('remarks','Remarks:',['class'=>'form-label']) !!}
-                        {!! Form::label('remarks',$client->remarks ,['class'=>'form-control']) !!}
-                    </div>
-                </div>
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('phone','Phone:',['class'=>'form-label']) !!}
+                                        {!! Form::label('phone',$client->billing->phone,['class'=>'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('website','Website:',['class'=>'form-label']) !!}
+                                        {!! Form::label('website',$client->billing->website,['class'=>'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('streetAddress1','Street Address 1:',['class'=>'form-label']) !!}
+                                        {!! Form::label('streetAddress1',$client->billing->streetAddress1,['class'=>'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('streetAddress2','Street Address 2 (Optional):',['class'=>'form-label']) !!}
+                                        {!! Form::label('streetAddress2',$client->billing->streetAddress2,['class'=>'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('city','City:',['class'=>'form-label']) !!}
+                                        {!! Form::label('city',$client->billing->city,['class'=>'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('postalCode','Postal Code:',['class'=>'form-label']) !!}
+                                        {!! Form::label('postalCode',$client->billing->postalCode,['class'=>'form-control']) !!}
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        {!! Form::label('VAT','VAT Number:',['class'=>'form-label']) !!}
+                                        {!! Form::label('VAT',$client->billing->VAT,['class'=>'form-control']) !!}
+                                    </div>
+                                    @else
+                                        <p>No address information...</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Address Information -->
+            </div>
+            <div class="tab-pane fade fade-right" id="btabs-animated-slideright-settings" role="tabpanel" aria-labelledby="btabs-animated-slideright-settings-tab">
+                <h4 class="fw-normal">Settings Content</h4>
+                <p>Content slides in to the right..</p>
             </div>
         </div>
+            <div class="tab-pane fade fade-right" id="btabs-animated-slideright-contact" role="tabpanel" aria-labelledby="btabs-animated-slideright-contact-tab">
+                <table class="table table-striped table-hover table-vcenter fs-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Host</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">login</th>
+                        <th scope="col">password</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if($credentials)
+                        @foreach($credentials as $credential)
+                            <tr>
+                                <td>{{$credential->host ? $credential->host : 'No Host'}}</td>
+                                <td>{{$credential->subject->name ? $credential->subject->name : 'No subject'}}</td>
+                                <td>{{$credential->login ? $credential->login : 'No login'}}</td>
+                                <td>{{$credential->password ? $credential->password : 'No password'}}</td>
+                                <td>
+                                    <a href="{{route('credentials.edit', $credential->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit credential">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{{route('credentials.show', $credential->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show credential">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade fade-right" id="btabs-animated-slideright-docs" role="tabpanel" aria-labelledby="btabs-animated-slideright-docs-tab">in progress...</div>
     </div>
-    <!-- END Client Profile -->
-
-    <!-- Address Information -->
-    <div class="block block-rounded">
-        <div class="block-header block-header-default">
-            <h3 class="block-title">Address Information</h3>
-        </div>
-        @if($client->billing)
-            <div class="block-content">
-                <div class="row push">
-                    <div class="col-lg-4">
-                        <p class="fs-sm text-muted">
-                            Address information for your Happy Client.
-                        </p>
-                    </div>
-                    <div class="col-lg-8 col-xl-5">
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('company','Company (Optional):',['class'=>'form-label']) !!}
-                            {!! Form::label('company',$client->billing->company,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('firstname','Firstname:',['class'=>'form-label']) !!}
-                            {!! Form::label('firstname',$client->billing->firstname,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('lastname','Lastname:',['class'=>'form-label']) !!}
-                            {!! Form::label('lastname',$client->billing->lastname,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('phone','Phone:',['class'=>'form-label']) !!}
-                            {!! Form::label('phone',$client->billing->phone,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('website','Website:',['class'=>'form-label']) !!}
-                            {!! Form::label('website',$client->billing->website,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('streetAddress1','Street Address 1:',['class'=>'form-label']) !!}
-                            {!! Form::label('streetAddress1',$client->billing->streetAddress1,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('streetAddress2','Street Address 2 (Optional):',['class'=>'form-label']) !!}
-                            {!! Form::label('streetAddress2',$client->billing->streetAddress2,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('city','City:',['class'=>'form-label']) !!}
-                            {!! Form::label('city',$client->billing->city,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('postalCode','Postal Code:',['class'=>'form-label']) !!}
-                            {!! Form::label('postalCode',$client->billing->postalCode,['class'=>'form-control']) !!}
-                        </div>
-
-                        <div class="form-group mb-4">
-                            {!! Form::label('VAT','VAT Number:',['class'=>'form-label']) !!}
-                            {!! Form::label('VAT',$client->billing->VAT,['class'=>'form-control']) !!}
-                        </div>
-                    </div>
-                </div>
-            </div>
-    @endif
+    <!-- END Block Tabs Animated Slide Right -->
 
 
-    <!-- END Address Information -->
 
     </div>
     <!-- END Page Content -->
