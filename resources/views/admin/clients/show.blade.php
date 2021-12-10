@@ -194,7 +194,95 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade fade-right" id="btabs-animated-slideright-docs" role="tabpanel" aria-labelledby="btabs-animated-slideright-docs-tab">in progress...</div>
+            <div class="tab-pane fade fade-right" id="btabs-animated-slideright-docs" role="tabpanel" aria-labelledby="btabs-animated-slideright-docs-tab">
+                <button type="button" class="btn btn-alt-primary push" data-bs-toggle="modal" data-bs-target="#modal-block-large"><i class="fa fa-plus"></i></button>
+                <!-- Large Block Modal -->
+                <div class="modal" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="block block-rounded block-transparent mb-0">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">new Doc</h3>
+                                    <div class="block-options">
+                                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                            <i class="fa fa-fw fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="block-content fs-sm">
+                                    <form class="row mb-0" name="contactformulier"
+                                          action="{{action('App\Http\Controllers\AdminCredentialController@createCredentialDoc')}}"
+                                          method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" class="form-control" name="client_id" value="{{ $client->id }}">
+                                        <div class="mb-4">
+                                            {!! Form::label('type','Select Type:', ['class'=>'form-label']) !!}
+                                            {!! Form::select('type',$docTypes,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                                            @error('docType')
+                                            <p class="text-danger mt-2"> {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="frontend-contact-msg">Description</label>
+                                            <textarea class="form-control" name="description" rows="7"
+                                                      ></textarea>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label" for="frontend-contact-email">Doc file</label>
+                                            <input type="file" class="form-control" id="frontend-contact-tagline"
+                                                   name="photos[]" multiple>
+                                        </div>
+                                        <div class="mb-4">
+                                            <button type="submit" class="btn btn-alt-primary">
+                                                <i class="fa fa-paper-plane me-1 opacity-50"></i> Save
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Large Block Modal -->
+                <table class="table table-striped table-hover table-vcenter fs-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">type</th>
+                        <th scope="col">description</th>
+                        <th scope="col">file</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if($docs)
+                        @foreach($docs as $doc)
+                            <tr>
+                                <td>{{$doc->docType ? $doc->docType->type : 'No type'}}</td>
+                                <td>{{$doc->description ? $doc->description : 'No description'}}</td>
+                                <td>
+                                    @foreach($doc->photos as $photo)
+                                        {{ $photo->file }} <br>
+                                    @endforeach
+                                </td>
+
+{{--                                <td>--}}
+{{--                                    <a href="{{route('credentials.edit', $doc->id)}}">--}}
+{{--                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit credential">--}}
+{{--                                            <i class="fa fa-fw fa-pencil-alt"></i>--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="{{route('credentials.show', $doc->id)}}">--}}
+{{--                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show credential">--}}
+{{--                                            <i class="far fa-eye"></i>--}}
+{{--                                        </button>--}}
+{{--                                    </a>--}}
+{{--                                </td>--}}
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                </table>
+            </div>
     </div>
     <!-- END Block Tabs Animated Slide Right -->
 

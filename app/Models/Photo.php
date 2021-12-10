@@ -10,27 +10,13 @@ class Photo extends Model
     use HasFactory;
     protected $fillable = [
         'file',
-        'post_id',
-        'credential_id',
-        'is_active',
-        'home_page_id',
-
-
+        'doc_id'
     ];
 
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
 
-    public function companycredential()
+    public function doc()
     {
-        return $this->belongsTo(CompanyCredential::class);
-    }
-
-    public function homePage()
-    {
-        return $this->belongsTo(HomePage::class);
+        return $this->belongsTo(Doc::class);
     }
 
 

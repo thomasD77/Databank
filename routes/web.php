@@ -58,9 +58,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     Route::resource('addresses', App\Http\Controllers\AdminAddressesController::class);
 
 
-    //Booking Routes
+    //Credential Routes
     Route::resource('credentials', App\Http\Controllers\AdminCredentialController::class);
     Route::get('archive/credentials', 'App\Http\Controllers\AdminCredentialController@archive')->name('credentials.archive');
+    Route::post('create/photo', 'App\Http\Controllers\AdminCredentialController@createCredentialDoc');
     Route::resource('subjects', App\Http\Controllers\AdminSubjectController::class);
     Route::get('archive/subjects', 'App\Http\Controllers\AdminSubjectController@archive')->name('subjects.archive');
 

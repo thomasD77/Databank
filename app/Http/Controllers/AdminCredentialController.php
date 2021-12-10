@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Credential;
+use App\Models\Doc;
+use App\Models\DocType;
+use App\Models\Photo;
 use App\Models\Subject;
 use App\Models\User;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminCredentialController extends Controller
 {
@@ -166,4 +171,29 @@ class AdminCredentialController extends Controller
             ->paginate(20);
         return view('admin.credentials.archive', compact('credentials'));
     }
+
+    public function createCredentialDoc(Request $request)
+    {
+        $doc = new Doc();
+        $doc->docType_id = $request->type;
+        $doc->description = $request->description;
+        $doc->client_id = $request->client_id;
+        $doc->save();
+
+        if($files = $request->file('photos')){
+            foreach ($files as $file) {
+                $name = time(). $file->getClientOriginalName();
+                $file->move('images/docs', $name);
+                $path =  'images/docs/' . $name;
+                Photo::create(['file'=>$name, 'doc_id'=>$doc->id]);
+            }
+        }
+
+        Toastr::success('Post Successfully Saved');
+
+        return redirect('admin/clients');
+
+    }
+
+
 }
