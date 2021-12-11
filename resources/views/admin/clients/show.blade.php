@@ -29,7 +29,7 @@
         <ul class="nav nav-tabs nav-tabs-block" role="tablist">
 
             <li class="nav-item">
-                <button class="nav-link active" id="btabs-animated-slideright-home-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-home" role="tab" aria-controls="btabs-animated-slideright-home" aria-selected="true">Information</button>
+                <button class="nav-link" id="btabs-animated-slideright-home-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-home" role="tab" aria-controls="btabs-animated-slideright-home" aria-selected="true">Information</button>
             </li>
 
             <li class="nav-item">
@@ -41,11 +41,11 @@
             </li>
 
             <li class="nav-item">
-                <button class="nav-link" id="btabs-animated-slideright-docs-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-docs" role="tab" aria-controls="btabs-animated-slideright-docs" aria-selected="false">Docs</button>
+                <button class="nav-link active" id="btabs-animated-slideright-docs-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-docs" role="tab" aria-controls="btabs-animated-slideright-docs" aria-selected="false">Docs</button>
             </li>
         </ul>
         <div class="block-content tab-content overflow-hidden">
-            <div class="tab-pane fade fade-right show active" id="btabs-animated-slideright-home" role="tabpanel" aria-labelledby="btabs-animated-slideright-home-tab">
+            <div class="tab-pane fade fade-right show" id="btabs-animated-slideright-home" role="tabpanel" aria-labelledby="btabs-animated-slideright-home-tab">
                 <!-- Client Profile -->
                 <div class="block block-rounded">
                     <div class="block-header block-header-default">
@@ -194,7 +194,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane fade fade-right" id="btabs-animated-slideright-docs" role="tabpanel" aria-labelledby="btabs-animated-slideright-docs-tab">
+            <div class="tab-pane fade fade-right show active" id="btabs-animated-slideright-docs" role="tabpanel" aria-labelledby="btabs-animated-slideright-docs-tab">
                 <button type="button" class="btn btn-alt-primary push" data-bs-toggle="modal" data-bs-target="#modal-block-large"><i class="fa fa-plus"></i></button>
                 <!-- Large Block Modal -->
                 <div class="modal" id="modal-block-large" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
@@ -217,8 +217,8 @@
                                         <input type="hidden" class="form-control" name="client_id" value="{{ $client->id }}">
                                         <div class="mb-4">
                                             {!! Form::label('type','Select Type:', ['class'=>'form-label']) !!}
-                                            {!! Form::select('type',$docTypes,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
-                                            @error('docType')
+                                            {!! Form::select('type',$types,null,['class'=>'form-control', 'placeholder'=>'select...'])!!}
+                                            @error('type')
                                             <p class="text-danger mt-2"> {{ $message }}</p>
                                             @enderror
                                         </div>
@@ -257,26 +257,79 @@
                     @if($docs)
                         @foreach($docs as $doc)
                             <tr>
-                                <td>{{$doc->docType ? $doc->docType->type : 'No type'}}</td>
+                                <td>
+                                    @if($doc->type->name == "WORD")
+                                        <a class="btn btn-alt-primary" href=""><i class="far fa-file-word"></i></a>
+
+                                    @elseif($doc->type->name == "EXCEL")
+                                        <a class="btn btn-alt-success" href=""><i class="far fa-file-excel"></i></a>
+
+                                    @elseif($doc->type->name == "PDF")
+                                        <a class="btn btn-alt-danger" href=""><i class="far fa-file-pdf"></i></a>
+
+                                    @elseif($doc->type->name == "OFFICE")
+                                        <a class="btn btn-alt-secondary" href=""><i class="si si-docs"></i></a>
+
+                                    @elseif($doc->type->name == "IMG")
+                                        <a class="btn btn-alt-primary" href=""><i class="far fa-image"></i></a>
+
+                                    @else($doc->type->name == "OTHER")
+                                        <a class="btn btn-alt-info" href=""><i class="far fa-file"></i></a>
+                                    @endif
+                                </td>
                                 <td>{{$doc->description ? $doc->description : 'No description'}}</td>
                                 <td>
                                     @foreach($doc->photos as $photo)
-                                        {{ $photo->file }} <br>
+                                        <a target="_blank" href="{{ asset('images/docs/') . $photo->file }}"><li>{{ substr($photo->file, 11)}}</li></a>
                                     @endforeach
                                 </td>
 
-{{--                                <td>--}}
-{{--                                    <a href="{{route('credentials.edit', $doc->id)}}">--}}
-{{--                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit credential">--}}
-{{--                                            <i class="fa fa-fw fa-pencil-alt"></i>--}}
-{{--                                        </button>--}}
-{{--                                    </a>--}}
-{{--                                    <a href="{{route('credentials.show', $doc->id)}}">--}}
-{{--                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Show credential">--}}
-{{--                                            <i class="far fa-eye"></i>--}}
-{{--                                        </button>--}}
-{{--                                    </a>--}}
-{{--                                </td>--}}
+                                <td>
+                                    <a href="{{route('doc.edit', $doc->id)}}">
+                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit doc">
+                                            <i class="fa fa-fw fa-pencil-alt"></i>
+                                        </button>
+                                    </a>
+                                    <button type="button" class="btn btn-alt-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal-block-delete{{$doc->id}}">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button
+                                    >
+                                    <!-- Large Block Modal -->
+                                    <div class="modal" id="modal-block-delete{{$doc->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-delete{{$doc->id}}" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="block block-rounded block-transparent mb-0">
+                                                    <div class="block-header block-header-default">
+                                                        <h3 class="block-title">Delete Doc</h3>
+                                                        <div class="block-options">
+                                                            <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-fw fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="block-content fs-sm">
+                                                        <form class="row mb-0" name="contactformulier"
+                                                              action="{{action('App\Http\Controllers\AdminCredentialController@deleteCredentialDoc')}}"
+                                                              method="post">
+                                                            @csrf
+                                                            <input type="hidden" value="{{$doc->id}}" name="doc_id">
+                                                                <p class="text-center">Are you sure you want to delete these docs?</p>
+                                                                <button type="submit" class="btn btn-alt-danger mb-1">Yes</button>
+                                                                <button type="button" class="btn btn-alt-primary mb-3" data-bs-dismiss="modal">No</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END Large Block Modal -->
+
+
+
+
+                                </td>
                             </tr>
                         @endforeach
                     @endif

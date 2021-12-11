@@ -15,7 +15,7 @@ class CreateDocsTable extends Migration
     {
         Schema::create('docs', function (Blueprint $table) {
             $table->id();
-            $table->string('docType_id')->index();
+            $table->string('type_id')->index();
             $table->string('description')->nullable();
             $table->integer('client_id')->index();
             $table->timestamps();

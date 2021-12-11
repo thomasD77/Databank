@@ -10,6 +10,7 @@ use App\Models\Doc;
 use App\Models\DocType;
 use App\Models\Loyal;
 use App\Models\Source;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -80,16 +81,19 @@ class AdminClientController extends Controller
         //
         $client = User::findOrFail($id);
 
-        $docTypes = DocType::all()->pluck('type', 'id');
+        $types = Type::all()->pluck('name', 'id');
 
-        $docs = Doc::where('client_id', $id)->get();
+        $docs = Doc::query()
+            ->with(['type', 'photos'])
+            ->where('client_id', $id)
+            ->get();
 
         $credentials = Credential::query()
             ->with(['client', 'subject'])
             ->where('client_id', $client->id)
             ->paginate(15);
 
-        return view('admin.clients.show', compact('client', 'credentials', 'docTypes', 'docs'));
+        return view('admin.clients.show', compact('client', 'credentials', 'types', 'docs'));
     }
 
     /**

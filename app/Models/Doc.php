@@ -15,9 +15,9 @@ class Doc extends Model
         'client_id'
     ]);
 
-    public function docType()
+    public function type()
     {
-        return $this->belongsTo(DocType::class);
+        return $this->belongsTo(Type::class);
     }
 
     public function photos()

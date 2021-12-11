@@ -175,7 +175,7 @@ class AdminCredentialController extends Controller
     public function createCredentialDoc(Request $request)
     {
         $doc = new Doc();
-        $doc->docType_id = $request->type;
+        $doc->type_id = $request->type;
         $doc->description = $request->description;
         $doc->client_id = $request->client_id;
         $doc->save();
@@ -189,10 +189,54 @@ class AdminCredentialController extends Controller
             }
         }
 
-        Toastr::success('Post Successfully Saved');
+        Toastr::success('Doc Successfully Saved');
 
         return redirect('admin/clients');
 
+    }
+
+    public function updateCredentialDoc(Request $request, $id)
+    {
+        $doc = Doc::findOrFail($id);
+        $doc->type_id = $request->type;
+        $doc->description = $request->description;
+        $doc->client_id = $request->client_id;
+        $doc->update();
+
+        $oldDocs = Photo::where('doc_id', $doc->id)->get();
+        foreach ($oldDocs as $doc){
+            $doc->delete();
+        }
+
+        if($files = $request->file('photos')){
+            foreach ($files as $file) {
+                $name = time(). $file->getClientOriginalName();
+                $file->move('images/docs', $name);
+                $path =  'images/docs/' . $name;
+                Photo::create(['file'=>$name, 'doc_id'=>$doc->id]);
+            }
+        }
+
+        Toastr::success('Doc Successfully Updated');
+
+        return redirect('admin/clients');
+
+    }
+
+    public function deleteCredentialDoc(Request $request)
+    {
+        $docFile = Doc::findOrFail($request->doc_id);
+
+        foreach ($docFile->photos as $doc) {
+            unlink('images/docs/' . $doc->file);
+            $doc->delete();
+        }
+
+        $docFile->delete();
+
+        Toastr::success('Doc Successfully Deleted');
+
+        return redirect('admin/clients');
     }
 
 
