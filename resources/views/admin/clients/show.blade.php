@@ -158,6 +158,7 @@
             </div>
         </div>
             <div class="tab-pane fade fade-right" id="btabs-animated-slideright-contact" role="tabpanel" aria-labelledby="btabs-animated-slideright-contact-tab">
+                <a href="{{route('credentials.create')}}"><button data-bs-toggle="tooltip" title="New Credential" class="btn btn-alt-primary"><i class="fa fa-plus"></i></button></a>
                 <table class="table table-striped table-hover table-vcenter fs-sm">
                     <thead>
                     <tr>
@@ -325,10 +326,6 @@
                                         </div>
                                     </div>
                                     <!-- END Large Block Modal -->
-
-
-
-
                                 </td>
                             </tr>
                         @endforeach

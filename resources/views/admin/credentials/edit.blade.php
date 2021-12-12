@@ -14,8 +14,8 @@
             <h2 class="h4 fw-normal text-white-75">
                 <?php echo Auth::user()->name; ?>
             </h2>
-            <a class="btn btn-alt-secondary" href="{{ asset('/dashboard') }}">
-                <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Dashboard
+            <a class="btn btn-alt-secondary" href="{{ route('clients.index')  }}">
+                <i class="fa fa-fw fa-arrow-left text-danger"></i> Back to Clients
             </a>
         </div>
 </div>

@@ -151,4 +151,15 @@ class AdminClientController extends Controller
 
         return view('admin.clients.archive', compact('clients'));
     }
+
+    public function search_client(request $request)
+    {
+        $search_text = $request->searchbar;
+        $clients = User::query()
+            ->where('name', 'LIKE', '%' .$search_text. '%')
+            ->where('archived', 0)
+            ->paginate(10);
+
+        return view('admin.clients.search', compact('clients'));
+    }
 }

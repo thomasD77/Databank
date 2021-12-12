@@ -102,36 +102,16 @@
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-main-heading text-uppercase">Data Customers</li>
+
                 <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                         <i class="nav-main-link-icon  far fa-calendar-alt"></i>
-                        <span class="nav-main-link-name ">Credentials</span>
+                        <span class="nav-main-link-name ">Data Objects</span>
                     </a>
                     <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('credentials.index')}}">
-                                <span class="nav-main-link-name">List</span>
-                            </a>
-                        </li>
                         <li class="nav-main-item">
                             <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}" href="{{ route('subjects.index') }}">
                                 <span class="nav-main-link-name">Subject</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-main-heading">People</li>
-                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
-                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon far fa-gem"></i>
-                        <span class="nav-main-link-name">Clients</span>
-                    </a>
-                    <ul class="nav-main-submenu">
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}" href="{{route('clients.index')}}">
-                                <span class="nav-main-link-name">list</span>
                             </a>
                         </li>
                     </ul>

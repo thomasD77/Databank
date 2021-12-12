@@ -232,20 +232,20 @@ use Illuminate\Support\Facades\Auth;
 <!--                      </ul>-->
 <!--                  </li>-->
 
-                  <li class="nav-main-heading text-uppercase">People</li>
-                  <li class="nav-main-item <?php echo request()->is('pages/*') ? ' open' : '' ?>">
-                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                          <i class="nav-main-link-icon far fa-gem"></i>
-                          <span class="nav-main-link-name ">Clients</span>
-                      </a>
-                      <ul class="nav-main-submenu">
-                          <li class="nav-main-item">
-                              <a class="nav-main-link<?php echo request()->is('pages/datatables') ? ' active' : '' ?>" href="<?php echo route('clients.index') ?>">
-                                  <span class="nav-main-link-name">List</span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
+<!--                  <li class="nav-main-heading text-uppercase">People</li>-->
+<!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->
+<!--                      <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                          <i class="nav-main-link-icon far fa-gem"></i>-->
+<!--                          <span class="nav-main-link-name ">Clients</span>-->
+<!--                      </a>-->
+<!--                      <ul class="nav-main-submenu">-->
+<!--                          <li class="nav-main-item">-->
+<!--                              <a class="nav-main-link--><?php //echo request()->is('pages/datatables') ? ' active' : '' ?><!--" href="--><?php //echo route('clients.index') ?><!--">-->
+<!--                                  <span class="nav-main-link-name">List</span>-->
+<!--                              </a>-->
+<!--                          </li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
 
 <!--                  <li class="nav-main-heading text-uppercase">Publish</li>-->
 <!--                  <li class="nav-main-item --><?php //echo request()->is('pages/*') ? ' open' : '' ?><!--">-->

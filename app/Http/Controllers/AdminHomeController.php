@@ -28,11 +28,7 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user()->id;
-        $test = Role::where('id', $user)->first();
-        $company = CompanyCredential::latest()->first();
-        $photos = Photo::all();
-        return view('admin.dashboard', compact('test', 'company', 'photos'));
+        return view('admin.clients.index');
     }
 
 }

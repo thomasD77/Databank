@@ -55,6 +55,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Clients Routes
     Route::resource('clients', App\Http\Controllers\AdminClientController::class);
     Route::get('archive/clients', 'App\Http\Controllers\AdminClientController@archive')->name('clients.archive');
+    Route::post('search/client', 'App\Http\Controllers\AdminClientController@search_client')->name('search.client');
     Route::resource('addresses', App\Http\Controllers\AdminAddressesController::class);
 
 

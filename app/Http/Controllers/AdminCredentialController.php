@@ -78,7 +78,7 @@ class AdminCredentialController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('credential Successfully Saved');
 
-        return redirect('/admin/credentials');
+        return redirect('/admin/clients');
     }
 
     /**
@@ -150,7 +150,7 @@ class AdminCredentialController extends Controller
 
         \Brian2694\Toastr\Facades\Toastr::success('credential Successfully Updated');
 
-        return redirect('/admin/credentials');
+        return redirect('/admin/clients');
     }
 
     /**

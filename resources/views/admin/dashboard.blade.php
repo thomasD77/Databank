@@ -25,10 +25,10 @@
             <div class="d-flex parent flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
                 <div class="flex-grow-1">
                     <h1 class="h3 fw-bold mb-2">
-                        {{__('custom.Dashboard')}}
+                        Dashboard
                     </h1>
                     <h2 class="fs-base lh-base fw-medium text-muted mb-0">
-                        {{__('custom.Welcome')}} {{Auth::user()->name}}, {{__('custom.everything looks great')}}.
+                        Welcome {{Auth::user()->name}}, everything looks great.
                     </h2>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
@@ -37,7 +37,7 @@
                             <a class="link-fx" href="javascript:void(0)">App</a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">
-                            {{__('custom.Dashboard')}}
+                            Dashboard
                         </li>
                     </ol>
                 </nav>
