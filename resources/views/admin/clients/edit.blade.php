@@ -55,7 +55,9 @@
                         <p class="text-danger mt-2"> {{ $message }}</p>
                         @enderror
                     </div>
+                </div>
 
+                <div>
                     <div class="form-group mb-4">
                         {!! Form::label('remarks','Remarks:',['class'=>'form-label']) !!}
                         {!! Form::textarea('remarks',$client->remarks ,['class'=>'form-control']) !!}

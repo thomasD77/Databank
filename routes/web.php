@@ -62,10 +62,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>[ 'auth', 'verified']], function(
     //Credential Routes
     Route::resource('credentials', App\Http\Controllers\AdminCredentialController::class);
     Route::get('archive/credentials', 'App\Http\Controllers\AdminCredentialController@archive')->name('credentials.archive');
-    Route::post('create/doc', 'App\Http\Controllers\AdminCredentialController@createCredentialDoc');
-    Route::patch('update/doc', 'App\Http\Controllers\AdminCredentialController@updateCredentialDoc')->name('doc.edit');
-    Route::post('delete/doc', 'App\Http\Controllers\AdminCredentialController@deleteCredentialDoc')->name('doc.delete');
     Route::resource('subjects', App\Http\Controllers\AdminSubjectController::class);
+    Route::resource('docs', App\Http\Controllers\AdminDocController::class);
+    Route::post('delete/doc', 'App\Http\Controllers\AdminDocController@delete');
+    Route::post('update/doc', 'App\Http\Controllers\AdminDocController@updateDoc');
     Route::get('archive/subjects', 'App\Http\Controllers\AdminSubjectController@archive')->name('subjects.archive');
 
 });

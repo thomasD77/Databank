@@ -43,6 +43,7 @@
             <li class="nav-item">
                 <button class="nav-link active" id="btabs-animated-slideright-docs-tab" data-bs-toggle="tab" data-bs-target="#btabs-animated-slideright-docs" role="tab" aria-controls="btabs-animated-slideright-docs" aria-selected="false">Docs</button>
             </li>
+
         </ul>
         <div class="block-content tab-content overflow-hidden">
             <div class="tab-pane fade fade-right show" id="btabs-animated-slideright-home" role="tabpanel" aria-labelledby="btabs-animated-slideright-home-tab">
@@ -70,6 +71,9 @@
                                     {!! Form::label('email',$client->email,['class'=>'form-control']) !!}
                                 </div>
 
+                            </div>
+
+                            <div class="">
                                 <div class="form-group mb-4">
                                     {!! Form::label('remarks','Remarks:',['class'=>'form-label']) !!}
                                     {!! Form::label('remarks',$client->remarks ,['class'=>'form-control']) !!}
@@ -212,7 +216,7 @@
                                 </div>
                                 <div class="block-content fs-sm">
                                     <form class="row mb-0" name="contactformulier"
-                                          action="{{action('App\Http\Controllers\AdminCredentialController@createCredentialDoc')}}"
+                                          action="{{action('App\Http\Controllers\AdminDocController@store')}}"
                                           method="post" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" class="form-control" name="client_id" value="{{ $client->id }}">
@@ -286,18 +290,69 @@
                                 </td>
 
                                 <td>
-                                    <a href="{{route('doc.edit', $doc->id)}}">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit doc">
-                                            <i class="fa fa-fw fa-pencil-alt"></i>
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-alt-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal-block-edit{{$doc->id}}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button
+                                    >
+                                    <!-- Large Block Modal Edit -->
+                                    <div class="modal" id="modal-block-edit{{$doc->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-edit{{$doc->id}}" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="block block-rounded block-transparent mb-0">
+                                                    <div class="block-header block-header-default">
+                                                        <h3 class="block-title">Edit Doc</h3>
+                                                        <div class="block-options">
+                                                            <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                                                                <i class="fa fa-fw fa-times"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="block-content fs-sm">
+                                                        <form class="row mb-0" name="contactformulier"
+                                                              action="{{action('App\Http\Controllers\AdminDocController@updateDoc')}}"
+                                                              method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" class="form-control" name="client_id" value="{{ $client->id }}">
+                                                            <input type="hidden" class="form-control" name="doc_id" value="{{ $doc->id }}">
+                                                            <div class="mb-4">
+                                                                {!! Form::label('type','Select Type:', ['class'=>'form-label']) !!}
+                                                                {!! Form::select('type',$types,$doc->type->id,['class'=>'form-control'])!!}
+                                                                @error('type')
+                                                                <p class="text-danger mt-2"> {{ $message }}</p>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                <label class="form-label" for="frontend-contact-msg">Description</label>
+                                                                <textarea class="form-control" name="description" rows="7"
+                                                                >{{ $doc->description }}</textarea>
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                <label class="form-label" for="frontend-contact-email">Doc file</label>
+                                                                <input type="file" class="form-control" id="frontend-contact-tagline"
+                                                                       name="photos[]" multiple>
+                                                            </div>
+                                                            <div class="mb-4">
+                                                                <button type="submit" class="btn btn-alt-primary">
+                                                                    <i class="fa fa-paper-plane me-1 opacity-50"></i> Update
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- END Large Block Modal -->
                                     <button type="button" class="btn btn-alt-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#modal-block-delete{{$doc->id}}">
                                         <i class="far fa-trash-alt"></i>
                                     </button
                                     >
-                                    <!-- Large Block Modal -->
+                                    <!-- Large Block Modal Delete -->
                                     <div class="modal" id="modal-block-delete{{$doc->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-delete{{$doc->id}}" aria-hidden="true">
                                         <div class="modal-dialog modal-sm" role="document">
                                             <div class="modal-content">
@@ -312,7 +367,8 @@
                                                     </div>
                                                     <div class="block-content fs-sm">
                                                         <form class="row mb-0" name="contactformulier"
-                                                              action="{{action('App\Http\Controllers\AdminCredentialController@deleteCredentialDoc')}}"
+                                                              action="{{action('App\Http\Controllers\AdminDocController@delete', $doc->id)}}"
+                                                              enctype="multipart/form-data"
                                                               method="post">
                                                             @csrf
                                                             <input type="hidden" value="{{$doc->id}}" name="doc_id">
@@ -333,11 +389,9 @@
                     </tbody>
                 </table>
             </div>
+
     </div>
     <!-- END Block Tabs Animated Slide Right -->
-
-
-
     </div>
     <!-- END Page Content -->
 
